@@ -34,7 +34,7 @@ if (isset($_POST["submit"]) && (!empty($_POST["inputNumber"]))){
    
 
 
-    $game = new GuessingGame(8,1);
+    $game = new GuessingGame();
     
 
     $game->run();

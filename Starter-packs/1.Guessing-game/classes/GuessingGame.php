@@ -49,8 +49,6 @@ class GuessingGame
         }
 
         $_SESSION["attempts"] = $this->attempts;
-        //var_dump($_SESSION["attempts"]);
-        //var_dump($this->attempts);
         if($this->attempts > 3){
             $this->playerLoses();
         }
