@@ -18,9 +18,7 @@ class GuessingGame
         
         if(!empty($_SESSION["attempts"])){
             $this->attempts = $_SESSION["attempts"];
-        }
-        
-       
+        }    
     }
 
     public function run()
@@ -28,19 +26,15 @@ class GuessingGame
         // This function functions as your game "engine"
         // It will run every time, check what needs to happen and run the according functions (or even create other classes)
 
-        // TODO: check if a secret number has been generated yet
+        // TODO: add secret numbers (according to attempts)
         // --> if not, generate one and store it in the session (so it can be kept when the user submits the form)
         if (empty($this->secretNumber)){
             $this->generateSecretNumber(); 
         }
 
-        // TODO: check if the player has submitted a guess
         if (!empty($_POST["inputNumber"]) ){
 
             $this->attempts++;  
-
-
-
 
             if($_POST["inputNumber"] == $this->secretNumber){
                 $this->playerWins();
@@ -50,26 +44,22 @@ class GuessingGame
                 $this->lower();
             } 
 
-           
         // --> if so, check if the player won (run the related function) or not (give a hint if the number was higher/lower or run playerLoses if all guesses are used).
         // TODO as an extra: if a reset button was clicked, use the reset function to set up a new game
         }
 
         $_SESSION["attempts"] = $this->attempts;
-        var_dump($_SESSION["attempts"]);
-        var_dump($this->attempts);
-
+        //var_dump($_SESSION["attempts"]);
+        //var_dump($this->attempts);
         if($this->attempts > 3){
             $this->playerLoses();
         }
-
     }
 
     public function generateSecretNumber()
     {
         $this->secretNumber = rand(1,10);
         $_SESSION["secretNumber"] = $this->secretNumber;
-
     }
     public function higher()
     {
@@ -82,27 +72,18 @@ class GuessingGame
 
     public function playerWins()
     {
-        // TODO: show a winner message (mention how many tries were needed)
         $this->result = "win";
-       
     }
 
     public function playerLoses()
     {
-        // TODO: show a lost message (mention the secret number)
-        
         $this->result = "lose";
         $this->reset();
-
-        
-
-         
     }
 
     public function reset()
     {   
-        // TODO: Generate a new secret number and overwrite the previous one
-
+        //TODO: generate a new secret number to session
         $_SESSION["attempts"] = 0;
         $this->attempts = 0;
     }
