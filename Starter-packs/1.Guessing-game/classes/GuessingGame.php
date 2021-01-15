@@ -7,6 +7,7 @@ class GuessingGame
     public $maxGuesses;
     public $secretNumber;
     public $result;
+    public $attempts = 0;
 
     // set a default amount of max guesses
     public function __construct(int $maxGuesses = 3)
@@ -15,6 +16,9 @@ class GuessingGame
         // Allowing your settings to be chosen like this, will bring a lot of flexibility
         $this->maxGuesses = $maxGuesses;
         
+        if(!empty($_SESSION["attempts"])){
+            $this->attempts = $_SESSION["attempts"];
+        }
         
        
     }
@@ -31,7 +35,13 @@ class GuessingGame
         }
 
         // TODO: check if the player has submitted a guess
-        if (!empty($_POST["inputNumber"])){
+        if (!empty($_POST["inputNumber"]) ){
+
+            $this->attempts++;  
+
+
+
+
             if($_POST["inputNumber"] == $this->secretNumber){
                 $this->playerWins();
             } else if ($_POST["inputNumber"] < $this->secretNumber) {
@@ -39,9 +49,20 @@ class GuessingGame
             } else if ($_POST["inputNumber"] > $this->secretNumber) {
                 $this->lower();
             } 
+
+           
         // --> if so, check if the player won (run the related function) or not (give a hint if the number was higher/lower or run playerLoses if all guesses are used).
         // TODO as an extra: if a reset button was clicked, use the reset function to set up a new game
         }
+
+        $_SESSION["attempts"] = $this->attempts;
+        var_dump($_SESSION["attempts"]);
+        var_dump($this->attempts);
+
+        if($this->attempts > 3){
+            $this->playerLoses();
+        }
+
     }
 
     public function generateSecretNumber()
@@ -71,13 +92,19 @@ class GuessingGame
         // TODO: show a lost message (mention the secret number)
         
         $this->result = "lose";
+        $this->reset();
+
+        
 
          
     }
 
     public function reset()
-    {
+    {   
         // TODO: Generate a new secret number and overwrite the previous one
+
+        $_SESSION["attempts"] = 0;
+        $this->attempts = 0;
     }
 }
 
