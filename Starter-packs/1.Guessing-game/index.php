@@ -3,6 +3,8 @@
 // Require the correct variable type to be used (no auto-converting)
 declare(strict_types = 1);
 
+session_start();
+
 // Show errors so we get helpful information
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -30,25 +32,29 @@ whatIsHappening();
 
 // Start the game
 // As this game is rather simple, one class should be sufficient
+
+$game = new GuessingGame();
 if (isset($_POST["submit"]) && (!empty($_POST["inputNumber"]))){
    
 
 
-    $game = new GuessingGame();
+    
     
 
     $game->run();
 
-    echo '<h2>$game</h2>';
-    echo "<pre>";
-    var_dump($game);
-    echo "</pre>";
-    echo "<br>";
+   
 
 };
 
 
+    
+echo '<h2>$game</h2>';
+echo "<pre>";
+var_dump($game);
+echo "</pre>";
+echo "<br>";
 
-
+//session_destroy();
 
 require 'view.php';

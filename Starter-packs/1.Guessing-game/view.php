@@ -15,16 +15,15 @@
 	Guess A Number (1-10)<br>
 	<input type="number" max="10" name="inputNumber"><br>
 	<input type="submit" name="submit" 
-	<?php if(!empty($game->attempts) && $game->attempts == 3){ echo "disabled";}?>>
+	<?php //if(!empty($game->attempts) && $game->attempts == 3){ echo "disabled";}?>>
 
-	<input type="reset" value="Reset" 
-	<?php // if(!empty($game->attempts) && ($game->attempts <= 3)){ echo "disabled";}?>>
-
-	<!-- <input type="reset" name="reset"> -->
+	
 	</form>
 
 	<h3>Your Choice: <?php if(isset($_POST["inputNumber"])){echo $_POST["inputNumber"];}?></h3>
-	<p> Attempts: <?php if(!empty($game->attempts)){ echo $game->attempts;}?></p>
+	<p> Attempts: <?php if(!empty($game->attempts)){ echo $game->attempts;}?>
+	<?php //if(!empty($game->attempts) && $game->attempts == 3){echo $game->allAttemptsUsed();}?>
+	</p>
 
 	<p>Result: <?php if(!empty($game->result)){ echo $game->result;} ?></p>
 	

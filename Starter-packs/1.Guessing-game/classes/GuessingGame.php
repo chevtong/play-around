@@ -1,6 +1,5 @@
 <?php
 
-session_start();
 
 class GuessingGame
 {
@@ -19,6 +18,9 @@ class GuessingGame
         if(!empty($_SESSION["attempts"])){
             $this->attempts = $_SESSION["attempts"];
         }    
+        if(!empty($_SESSION["secretNumber"])){
+            $this->secretNumber = $_SESSION["secretNumber"];
+        } 
     }
 
     public function run()
@@ -37,10 +39,17 @@ class GuessingGame
             $this->attempts++;  
 
             if($_POST["inputNumber"] == $this->secretNumber){
+
                 $this->playerWins();
+                $this->generateSecretNumber();
+                $this->reset();
+
             } else if ($_POST["inputNumber"] < $this->secretNumber) {
+
                 $this->higher();
+
             } else if ($_POST["inputNumber"] > $this->secretNumber) {
+
                 $this->lower();
             } 
 
@@ -49,9 +58,12 @@ class GuessingGame
         }
 
         $_SESSION["attempts"] = $this->attempts;
-        if($this->attempts > 3){
-            $this->playerLoses();
-        }
+        if($this->attempts == $this->maxGuesses){
+            $this->playerLoses(); 
+            $this->reset(); 
+            $this->generateSecretNumber();
+
+        } 
     }
 
     public function generateSecretNumber()
@@ -70,20 +82,28 @@ class GuessingGame
 
     public function playerWins()
     {
-        $this->result = "win";
+        $this->result = "win!  <br> The secret number is {$this->secretNumber} <br> Want to try again?";
     }
 
     public function playerLoses()
     {
-        $this->result = "lose";
-        $this->reset();
+        $this->result = "lose, <br> The secret number is {$this->secretNumber} <br> Want to try again?";
+        
     }
-
+   
+    public function allAttemptsUsed()
+    {
+    return "(All attempts are used, you can restart again)";
+    }
+  
     public function reset()
     {   
-        //TODO: generate a new secret number to session
-        $_SESSION["attempts"] = 0;
+        
+        echo "reset";
         $this->attempts = 0;
+        $_SESSION["attempts"] = 0;   
+        
+         
     }
 }
 
