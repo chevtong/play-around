@@ -15,6 +15,7 @@ class GuessingGame
         // Allowing your settings to be chosen like this, will bring a lot of flexibility
         $this->maxGuesses = $maxGuesses;
         
+        //TODO: problem is updating session attempts, double check is it necessary for session
         if(!empty($_SESSION["attempts"])){
             $this->attempts = $_SESSION["attempts"];
         }    
@@ -28,7 +29,6 @@ class GuessingGame
         // This function functions as your game "engine"
         // It will run every time, check what needs to happen and run the according functions (or even create other classes)
 
-        // TODO: add secret numbers (according to attempts)
         // --> if not, generate one and store it in the session (so it can be kept when the user submits the form)
         if (empty($this->secretNumber)){
             $this->generateSecretNumber(); 
@@ -57,12 +57,13 @@ class GuessingGame
         // TODO as an extra: if a reset button was clicked, use the reset function to set up a new game
         }
 
+        // TODO: check if the user win in the last attampt, is it working well?
         $_SESSION["attempts"] = $this->attempts;
         if($this->attempts == $this->maxGuesses){
+
             $this->playerLoses(); 
             $this->reset(); 
             $this->generateSecretNumber();
-
         } 
     }
 
@@ -98,12 +99,10 @@ class GuessingGame
   
     public function reset()
     {   
-        
         echo "reset";
         $this->attempts = 0;
         $_SESSION["attempts"] = 0;   
         
-         
     }
 }
 

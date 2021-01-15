@@ -34,16 +34,10 @@ whatIsHappening();
 // As this game is rather simple, one class should be sufficient
 
 $game = new GuessingGame();
+
 if (isset($_POST["submit"]) && (!empty($_POST["inputNumber"]))){
-   
 
-
-    
-    
-
-    $game->run();
-
-   
+    $game->run(); 
 
 };
 
