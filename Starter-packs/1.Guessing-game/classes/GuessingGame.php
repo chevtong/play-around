@@ -70,22 +70,22 @@ class GuessingGame
     }
     public function higher()
     {
-        $this->result = "higher";
+        $this->result = "The number is higher than you thought";
     }
     public function lower()
     {
-        $this->result = "lower";
+        $this->result = "The number is lower than you expected";
     }
 
     public function playerWins()
     {
-        $this->result = "win!  <br>The secret number is {$this->secretNumber}";
+        $this->result = "<h4>WIN!!</h4> The secret number is {$this->secretNumber}";
         $this->reset();
     }
 
     public function playerLoses()
     {
-        $this->result = "lose, <br>The secret number is {$this->secretNumber} ";
+        $this->result = "<h4>LOSE... </h4>The secret number is {$this->secretNumber} ";
         $this->reset();
     }
 
