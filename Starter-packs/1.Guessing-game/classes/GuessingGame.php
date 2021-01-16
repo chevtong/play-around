@@ -15,10 +15,10 @@ class GuessingGame
         // Allowing your settings to be chosen like this, will bring a lot of flexibility
         $this->maxGuesses = $maxGuesses;
         
-        //TODO: problem is updating session attempts, double check is it necessary for session
         if(!empty($_SESSION["attempts"])){
             $this->attempts = $_SESSION["attempts"];
-        }    
+        }
+
         if(!empty($_SESSION["secretNumber"])){
             $this->secretNumber = $_SESSION["secretNumber"];
         } 
@@ -29,7 +29,6 @@ class GuessingGame
         // This function functions as your game "engine"
         // It will run every time, check what needs to happen and run the according functions (or even create other classes)
 
-        // --> if not, generate one and store it in the session (so it can be kept when the user submits the form)
         if (empty($this->secretNumber)){
             $this->generateSecretNumber(); 
         }
@@ -53,17 +52,15 @@ class GuessingGame
                 $this->lower();
             } 
 
-        // --> if so, check if the player won (run the related function) or not (give a hint if the number was higher/lower or run playerLoses if all guesses are used).
-        // TODO as an extra: if a reset button was clicked, use the reset function to set up a new game
         }
 
-        // TODO: check if the user win in the last attampt, is it working well?
+        //if the user enter the correct number in the last attempts, 
+        //the above compparasion will still run first before change the secret number
         $_SESSION["attempts"] = $this->attempts;
         if($this->attempts == $this->maxGuesses){
 
             $this->playerLoses(); 
-            $this->reset(); 
-            $this->generateSecretNumber();
+             
         } 
     }
 
@@ -83,25 +80,29 @@ class GuessingGame
 
     public function playerWins()
     {
-        $this->result = "win!  <br> The secret number is {$this->secretNumber} <br> Want to try again?";
+        $this->result = "win!  <br> The secret number is {$this->secretNumber}";
+        $this->reset();
     }
 
     public function playerLoses()
     {
-        $this->result = "lose, <br> The secret number is {$this->secretNumber} <br> Want to try again?";
-        
+        $this->result = "lose, <br> The secret number is {$this->secretNumber} ";
+        $this->reset();
     }
    
+  
     public function allAttemptsUsed()
     {
-    return "(All attempts are used, you can restart again)";
+    return "All attempts are used, play again?";
     }
   
     public function reset()
     {   
-        echo "reset";
+       // echo "reset";
         $this->attempts = 0;
         $_SESSION["attempts"] = 0;   
+        $this->generateSecretNumber();
+
         
     }
 }

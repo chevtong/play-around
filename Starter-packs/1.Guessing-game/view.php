@@ -12,19 +12,23 @@
 <body>
 
 	<form action="index.php" method="post">
-	Guess A Number (1-10)<br>
+	Guess A Number (1-10)<br> You have 3 attempts to try it out!<br>
 	<input type="number" max="10" name="inputNumber"><br>
-	<input type="submit" name="submit" value="<?php  if( $game->attempts == 0){ 
-		echo "RESTART"; 
-	} else {
-		echo "SUBMIT";} //to change the text of the input from submit to restart?>" >
+	<input type="submit" name="submit" value="<?php  
+		if(($game->attempts == 0) && !empty($_POST["submit"])){ 
+			echo "RESTART"; 
+		} else {
+			echo "SUBMIT";} //to change the text of the input inside value attribute from submit to restart?>" >
+
 	</form>
 	
 
 	<h3>Your Choice: <?php if(isset($_POST["inputNumber"])){echo $_POST["inputNumber"];}?></h3>
-	<p> Attempts: <?php if(!empty($game->attempts)){ echo $game->attempts;}?>
-	</p>
-
+	<p> Attempts: <?php if(!empty($game->attempts)){ 
+		echo $game->attempts;}
+	else if ((isset($_POST["submit"])) && ($game->attempts == 0)){ 
+		echo $game->allAttemptsUsed();
+		}?></p>
 	<p>Result: <?php if(!empty($game->result)){ echo $game->result;} ?></p>
 	
 	
