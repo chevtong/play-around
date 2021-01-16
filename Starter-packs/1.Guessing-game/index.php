@@ -26,20 +26,17 @@ function whatIsHappening() {
     var_dump($_SESSION);
     echo "</pre>";   
 }
-whatIsHappening();
-
+//whatIsHappening();
 
 // Start the game
 $game = new GuessingGame();
 $game->run(); 
 
-
-
 //Show the $game obj deatils when building
-echo '<h2>$game</h2>';
-echo "<pre>";
-var_dump($game);
-echo "</pre>";
-echo "<br>";
+// echo '<h2>$game</h2>';
+// echo "<pre>";
+// var_dump($game);
+// echo "</pre>";
+// echo "<br>";
 
 require 'view.php';
