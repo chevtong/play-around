@@ -3,6 +3,7 @@
 // Require the correct variable type to be used (no auto-converting)
 declare(strict_types = 1);
 
+// Session needed to be turned on to record the secretNumber and attempts
 session_start();
 
 // Show errors so we get helpful information
@@ -29,26 +30,16 @@ whatIsHappening();
 
 
 // Start the game
-// As this game is rather simple, one class should be sufficient
-
 $game = new GuessingGame();
-
-if (isset($_POST["submit"]) && (!empty($_POST["inputNumber"]))){
-
-    $game->run(); 
-
-};
+$game->run(); 
 
 
-    
+
+//Show the $game obj deatils when building
 echo '<h2>$game</h2>';
 echo "<pre>";
 var_dump($game);
 echo "</pre>";
 echo "<br>";
-
-
-
-//session_destroy();
 
 require 'view.php';

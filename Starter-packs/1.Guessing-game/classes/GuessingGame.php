@@ -34,14 +34,12 @@ class GuessingGame
         }
 
         if (!empty($_POST["inputNumber"]) ){
-
+            //the attempts will be +1 everytime user submit a number
             $this->attempts++;  
 
             if($_POST["inputNumber"] == $this->secretNumber){
 
                 $this->playerWins();
-                $this->generateSecretNumber();
-                $this->reset();
 
             } else if ($_POST["inputNumber"] < $this->secretNumber) {
 
@@ -55,12 +53,13 @@ class GuessingGame
         }
 
         //if the user enter the correct number in the last attempts, 
-        //the above compparasion will still run first before change the secret number
+        //the above compparasion will still run first before change to a new secret number
+
         $_SESSION["attempts"] = $this->attempts;
+
         if($this->attempts == $this->maxGuesses){
 
-            $this->playerLoses(); 
-             
+            $this->playerLoses();   
         } 
     }
 
@@ -80,17 +79,16 @@ class GuessingGame
 
     public function playerWins()
     {
-        $this->result = "win!  <br> The secret number is {$this->secretNumber}";
+        $this->result = "win!  <br>The secret number is {$this->secretNumber}";
         $this->reset();
     }
 
     public function playerLoses()
     {
-        $this->result = "lose, <br> The secret number is {$this->secretNumber} ";
+        $this->result = "lose, <br>The secret number is {$this->secretNumber} ";
         $this->reset();
     }
-   
-  
+
     public function allAttemptsUsed()
     {
     return "All attempts are used, play again?";
@@ -98,12 +96,10 @@ class GuessingGame
   
     public function reset()
     {   
-       // echo "reset";
         $this->attempts = 0;
         $_SESSION["attempts"] = 0;   
-        $this->generateSecretNumber();
 
-        
+        $this->generateSecretNumber();
     }
 }
 

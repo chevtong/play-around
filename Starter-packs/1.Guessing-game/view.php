@@ -19,16 +19,15 @@
 			echo "RESTART"; 
 		} else {
 			echo "SUBMIT";} //to change the text of the input inside value attribute from submit to restart?>" >
-
 	</form>
 	
 
 	<h3>Your Choice: <?php if(isset($_POST["inputNumber"])){echo $_POST["inputNumber"];}?></h3>
 	<p> Attempts: <?php if(!empty($game->attempts)){ 
-		echo $game->attempts;}
-	else if ((isset($_POST["submit"])) && ($game->attempts == 0)){ 
+		echo $game->attempts;
+	} else if ((isset($_POST["submit"])) && ($game->attempts == 0)){ 
 		echo $game->allAttemptsUsed();
-		}?></p>
+	} ?></p>
 	<p>Result: <?php if(!empty($game->result)){ echo $game->result;} ?></p>
 	
 	
