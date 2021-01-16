@@ -17,60 +17,72 @@ class RockPaperScissors
 
     public function run()
     {
-        // This function functions as your game "engine"
-        // Now it's on to you to take the steering wheel and determine how it will work
+        
 
-        //TODO: compare the guess
-        //0 = rock, 1=paper,2=scrissors 
+
+        //TODO: display userchoice n computer choice
+    
+
+        //TO COMPARE: 0 = rock, 1=paper,2=scrissors 
         if (isset($_POST["userChoice"])){
 
             $this->userChoice = $_POST["userChoice"];
 
+            if (!empty($this->userChoice)){
+                $this->userChoiceDisplay();
+            }
 
 
             if ($this->computerChoice == $this->userChoice){
                 $this->tie();
-            } else if ($this->computerChoice == 0 && $this->userChoice == 1){
-                $this->winGame();
-            } else if ($this->computerChoice == 0 && $this->userChoice == 2){
-                $this->loseGame();
             } else if ($this->computerChoice == 1 && $this->userChoice == 2){
                 $this->winGame();
-            } else if ($this->computerChoice == 1 && $this->userChoice == 0){
+            } else if ($this->computerChoice == 1 && $this->userChoice == 3){
                 $this->loseGame();
-            } else if ($this->computerChoice == 2 && $this->userChoice == 0){
+            } else if ($this->computerChoice == 2 && $this->userChoice == 3){
                 $this->winGame();
             } else if ($this->computerChoice == 2 && $this->userChoice == 1){
+                $this->loseGame();
+            } else if ($this->computerChoice == 3 && $this->userChoice == 1){
+                $this->winGame();
+            } else if ($this->computerChoice == 3 && $this->userChoice == 2){
                 $this->loseGame();
             }
         }
     }
 
-    //TODO: function - generate computer choice
     public function GenerateComputerChoice()
     {
-        $this->computerChoice = rand(0,2);
-
+        $this->computerChoice = rand(1,3);
     }
 
-
-
-    //TODO: function - user win
     public function winGame()
     {
         $this->result = "WIN";
     }
 
-     //TODO: function - user lose
-     public function loseGame()
-     {
-         $this->result = "LOSE";
-     }
+    public function loseGame()
+    {
+        $this->result = "LOSE";
+    }
 
-     public function tie()
-     {
-         $this->result = "It's a tie.";
-     }
+    public function tie()
+    {
+        $this->result = "It's a tie.";
+    }
+    public function userChoiceDisplay()
+    {
+        if ($this->userChoice == 2){
+            echo "You chose PAPER";
+        } else if ($this->userChoice == 3){
+            echo "You chose SCISSORS";
+        } else  {
+            echo "You chose STONE";
+        }
+    }
 
-     //TODO: function - restart
+     //TODO: function - restart if needed?
+
+     //TODO: add the marks, 3 round 2 wins?
+    
 }

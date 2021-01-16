@@ -30,13 +30,17 @@
 <h1>Rock Paper Scissors</h1>
 
 
-<button name="userChoice" value="0"><img src="img/stone.png" alt="rock"></button>
-<button name="userChoice" value="1"><img src="img/paper.png" alt="paper"></button>
+<button name="userChoice" value="1"><img src="img/stone.png" alt="rock"></button>
+<button name="userChoice" value="2"><img src="img/paper.png" alt="paper"></button>
 
-<button name="userChoice" value="2"><img src="img/scissors.png" alt="scissors"></button>
+<button name="userChoice" value="3"><img src="img/scissors.png" alt="scissors"></button>
 
 </form>
 
+<!-- TODO: display userChoice
+TODO: display computer choice
+TODO: display result 
+TODO: display scores -->
 
 
 </body>
