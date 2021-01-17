@@ -35,7 +35,11 @@
 
 </form>
 
-
+<!-- display the overall result -->
+<h3><?php if(!empty($game->overResult)){ 
+	echo $game->overResult;
+}
+?></h3>
 
 <!-- display userChoice -->
 <p><?php if(!empty($game->userChoiceDisplay)){ 
@@ -48,11 +52,24 @@
 } ?></p>
 
 <!-- display result -->
-<p><?php if(!empty($game->result)){ 
-	echo $game->result;
+<p><?php if(!empty($game->roundResult)){ 
+	echo $game->roundResult;
 } ?></p>
 
-<!-- TODO: display scores --> 
+<!-- display user scores --> 
+<p><?php if(!empty($game->userScore)&& !empty($game->userChoice)){ 
+	echo "Your Score: {$game->userScore}";
+} ?></p>
+
+<!-- display computer scores --> 
+<p><?php if(!empty($game->computerScore)&& !empty($game->computerScore)){ 
+	echo "Computer Score: {$game->computerScore}";
+} ?></p>
+
+<!-- display ROUND --> 
+<p><?php if(!empty($game->round)&& !empty($game->round)){ 
+	echo "ROUND: {$game->round}";
+} ?></p>
 
 </body>
 </html>

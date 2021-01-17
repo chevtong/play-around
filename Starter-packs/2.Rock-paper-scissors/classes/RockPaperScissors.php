@@ -2,29 +2,41 @@
 
 class RockPaperScissors
 {
-    //TODO: set variables
     public $computerChoice;
     public $computerChoiceDisplay;
+    public $computerScore;
+
     public $userChoice;
     public $userChoiceDisplay;
-    public $result;
+    public $userScore;
+
+    public $round;
+    public $roundResult;
+
+    public $overResult;
     
     public function __construct()
     {
         if(empty($this->computerChoice)){
             $this->GenerateComputerChoice();
         }
+
+        if(!empty($_SESSION["computerScore"])){
+            $this->computerScore = $_SESSION["computerScore"];
+        }
+
+        if(!empty($_SESSION["userScore"])){
+            $this->userScore = $_SESSION["userScore"];
+        }
+
+        if(!empty($_SESSION["round"])){
+            $this->round = $_SESSION["round"];
+        }
     }
 
 
     public function run()
-    {
-        
-
-
-        //TODO: display userchoice n computer choice
-    
-
+    {  
         //TO COMPARE: 0 = rock, 1=paper,2=scrissors 
         if (!empty($_POST["userChoice"])){
 
@@ -37,22 +49,42 @@ class RockPaperScissors
                 $this->computerChoiceDisplay();
             }
 
+            $this->round++;
+            $_SESSION["round"]=$this->round;
 
             if ($this->computerChoice == $this->userChoice){
                 $this->tie();
             } else if ($this->computerChoice == 1 && $this->userChoice == 2){
-                $this->winGame();
+                $this->userAddScore();
             } else if ($this->computerChoice == 1 && $this->userChoice == 3){
-                $this->loseGame();
+                $this->computerAddScore();
             } else if ($this->computerChoice == 2 && $this->userChoice == 3){
-                $this->winGame();
+                $this->userAddScore();
             } else if ($this->computerChoice == 2 && $this->userChoice == 1){
-                $this->loseGame();
+                $this->computerAddScore();
             } else if ($this->computerChoice == 3 && $this->userChoice == 1){
-                $this->winGame();
+                $this->userAddScore();
             } else if ($this->computerChoice == 3 && $this->userChoice == 2){
-                $this->loseGame();
+                $this->computerAddScore();
             }
+
+                 //TODO: add the marks, 3 round 2 wins?
+            
+            //WIN situation
+            
+            //compare  == 3 need to reset the game
+            //clear computer and user score and roun
+            if ($this->round == 2 && $this->userScore == 2){
+                $this->overResult = "2/2 you win";
+                
+            } else if ($this->round == 3 && $this->userScore == 2){
+                $this->overResult =  "2/3 you win";
+            } else if ($this->round == 2 && $this->computerScore == 2){
+                $this->overResult =  "you lose";
+            } else if ($this->round == 3 && $this->computerScore == 2){
+                $this->overResult =  "you lose";
+            } 
+            
         }
     }
 
@@ -61,20 +93,6 @@ class RockPaperScissors
         $this->computerChoice = rand(1,3);
     }
 
-    public function winGame()
-    {
-        $this->result = "WIN";
-    }
-
-    public function loseGame()
-    {
-        $this->result = "LOSE";
-    }
-
-    public function tie()
-    {
-        $this->result = "It's a tie.";
-    }
     public function userChoiceDisplay()
     {
         if ($this->userChoice == 2){
@@ -97,8 +115,29 @@ class RockPaperScissors
         }
     }
 
+    public function userAddScore()
+    {
+        $this->roundResult = "WIN";
+
+        $this->userScore++; 
+        $_SESSION["userScore"] = $this->userScore;
+    }
+
+    public function computerAddScore()
+    {
+        $this->roundResult = "LOSE";
+        $this->computerScore++;
+        $_SESSION["computerScore"] = $this->computerScore;
+    }
+
+    public function tie()
+    {
+        $this->roundResult = "It's a tie.";
+    }
+   
+
      //TODO: function - restart if needed?
 
-     //TODO: add the marks, 3 round 2 wins?
+
     
 }
