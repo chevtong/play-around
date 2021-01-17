@@ -33,13 +33,19 @@
 <button name="userChoice" value="2"><img src="img/paper.png" alt="paper"></button>
 <button name="userChoice" value="3"><img src="img/scissors.png" alt="scissors"></button>
 
+
+<button name="restart" value="restart" <?php if(empty($game->overAllResult)){echo "disabled";}  ?>
+>RESTART</button>
 </form>
 
 <!-- display the overall result -->
-<h3><?php if(!empty($game->overResult)){ 
-	echo $game->overResult;
-}
+<h3><?php if(!empty($game->overAllResult)){ 
+	echo $game->overAllResult; 
+	 ?>
+
+<?php }
 ?></h3>
+
 
 <!-- display userChoice -->
 <p><?php if(!empty($game->userChoiceDisplay)){ 
@@ -51,25 +57,24 @@
 	echo $game->computerChoiceDisplay;
 } ?></p>
 
-	<!-- display overAllResult -->
-	<h3><?php if(!empty($game->overAllResult)){ 
-		echo $game->overAllResult;
-	} ?></h3>
+	
 
-		<!-- display result -->
-	<p><?php if(!empty($game->roundResult)){ 
-		echo $game->roundResult;
-	} ?></p>
+	<!-- display result -->
+<p><?php if(!empty($game->roundResult)){ 
+	echo $game->roundResult;
+} ?></p>
 
-	<!-- display user scores --> 
-	<p><?php if(!empty($game->userScore)){ 
-		echo "Your Score: {$game->userScore}";
-	} ?></p>
+<!-- display user scores --> 
+<p>Your Score: <?php if(!empty($game->userScore)){ 
+	echo $game->userScore; 
+} else {
+	echo "0";
+} ?></p>
 
-	<!-- display computer scores --> 
-	<p><?php if(!empty($game->computerScore)){ 
-		echo "Computer Score: {$game->computerScore}";
-	} ?></p>
+<!-- display computer scores --> 
+<p>Computer Score: <?php if(!empty($game->computerScore)){ 
+	echo $game->computerScore;
+} else { echo "0"; }?></p>
 
 	
 

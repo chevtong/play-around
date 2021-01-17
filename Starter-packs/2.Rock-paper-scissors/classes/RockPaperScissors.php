@@ -13,6 +13,9 @@ class RockPaperScissors
    // public $round;
     public $roundResult;
     public $overAllResult;
+
+
+
     
     public function __construct()
     {
@@ -28,6 +31,8 @@ class RockPaperScissors
             $this->userScore = $_SESSION["userScore"];
         }
 
+        
+
         // if(!empty($_SESSION["round"])){
         //     $this->round = $_SESSION["round"];
         // }
@@ -36,11 +41,16 @@ class RockPaperScissors
 
     public function run()
     {  
+        if (!empty($_POST["restart"]) && ($_POST["restart"] == "restart")){
+            $this->reset();
+        }
+
         //TO COMPARE: 0 = rock, 1=paper,2=scrissors 
         if (!empty($_POST["userChoice"])){
 
             $this->userChoice = $_POST["userChoice"];
 
+            // display the user and computer choices
             if (!empty($this->userChoice)){
                 $this->userChoiceDisplay();
             }
@@ -51,6 +61,7 @@ class RockPaperScissors
             // $this->round++;
             // $_SESSION["round"]=$this->round;
 
+            //compare the weapons on every round
             if ($this->computerChoice == $this->userChoice){
                 $this->tie();
             } else if ($this->computerChoice == 1 && $this->userChoice == 2){
@@ -67,19 +78,18 @@ class RockPaperScissors
                 $this->computerAddScore();
             }
 
-                 //TODO: add the marks, 3 round 2 wins?
-            
-            //WIN situation
-            
-            //compare  == 3 need to reset the game
-            //clear computer and user score and roun
+            //compare the scores to have 2wins in 3 rounds
             if (!empty($this->userScore) && ($this->userScore == 2)){
                 $this->overAllResult = "YOU WIN THE GAME!! ";
+                //$this->reset();
             } else if (!empty($this->computerScore) && ($this->computerScore == 2)){
                 $this->overAllResult = "YOU LOSE THE GAME!! ";
+               // $this->reset();
             }
-            
-        }
+
+        } 
+
+
     }
 
     public function GenerateComputerChoice()
@@ -93,7 +103,7 @@ class RockPaperScissors
             $this->userChoiceDisplay = "You chose PAPER";
         } else if ($this->userChoice == 3){
             $this->userChoiceDisplay =  "You chose SCISSORS";
-        } else  {
+        } else if ($this->userChoice == 1) {
             $this->userChoiceDisplay =  "You chose STONE";
         }
     }
@@ -102,11 +112,13 @@ class RockPaperScissors
     {
         if ($this->computerChoice == 2){
             $this->computerChoiceDisplay = "Computer chose PAPER";
-        } else if ($this->userChoice == 3){
+        } else if ($this->computerChoice == 3){
             $this->computerChoiceDisplay =  "Computer chose SCISSORS";
-        } else  {
+        } else if ($this->computerChoice == 1){
             $this->computerChoiceDisplay =  "Computer chose STONE";
         }
+            
+        
     }
 
     public function userAddScore()
@@ -130,7 +142,17 @@ class RockPaperScissors
     }
    
 
-     //TODO: function - restart if needed?
+     //TODO: want to keep the score display on view.php
+     //show restart btn, and need to press the btn to reset()
+    public function reset()
+    {
+        $this->computerScore = 0;
+        $_SESSION["computerScore"] = $this->computerScore;
+
+        $this->userScore = 0;
+        $_SESSION["userScore"] = $this->userScore;
+
+    }
 
 
     

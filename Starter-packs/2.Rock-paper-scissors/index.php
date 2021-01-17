@@ -15,10 +15,10 @@ require_once 'classes/RockPaperScissors.php';
 
 function whatIsHappening() {
     
-    // echo '<h2>$_POST</h2>';
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
+    echo '<h2>$_POST</h2>';
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
    
     echo '<h2>$_SESSION</h2>';
     echo "<pre>";
