@@ -4,19 +4,17 @@ class RockPaperScissors
 {
     public $computerChoice;
     public $computerChoiceDisplay;
+    public $computerChoiceImg;
     public $computerScore;
 
     public $userChoice;
     public $userChoiceDisplay;
+    public $userChoiceImg;
     public $userScore;
 
-   // public $round;
     public $roundResult;
     public $overAllResult;
 
-
-
-    
     public function __construct()
     {
         if(empty($this->computerChoice)){
@@ -30,12 +28,6 @@ class RockPaperScissors
         if(!empty($_SESSION["userScore"])){
             $this->userScore = $_SESSION["userScore"];
         }
-
-        
-
-        // if(!empty($_SESSION["round"])){
-        //     $this->round = $_SESSION["round"];
-        // }
     }
 
 
@@ -58,9 +50,6 @@ class RockPaperScissors
                 $this->computerChoiceDisplay();
             }
 
-            // $this->round++;
-            // $_SESSION["round"]=$this->round;
-
             //compare the weapons on every round
             if ($this->computerChoice == $this->userChoice){
                 $this->tie();
@@ -81,15 +70,12 @@ class RockPaperScissors
             //compare the scores to have 2wins in 3 rounds
             if (!empty($this->userScore) && ($this->userScore == 2)){
                 $this->overAllResult = "YOU WIN THE GAME!! ";
-                //$this->reset();
+                //also set the display of restart button on view.php
             } else if (!empty($this->computerScore) && ($this->computerScore == 2)){
                 $this->overAllResult = "YOU LOSE THE GAME!! ";
-               // $this->reset();
+                //also set the display of restart button on view.php
             }
-
         } 
-
-
     }
 
     public function GenerateComputerChoice()
@@ -101,10 +87,14 @@ class RockPaperScissors
     {
         if ($this->userChoice == 2){
             $this->userChoiceDisplay = "You chose PAPER";
+            $this->userChoiceImg = "<img src='img/paper.png' alt='paper'>";
         } else if ($this->userChoice == 3){
             $this->userChoiceDisplay =  "You chose SCISSORS";
+            $this->userChoiceImg = "<img src='img/scissors.png' alt='scissors'>";
         } else if ($this->userChoice == 1) {
             $this->userChoiceDisplay =  "You chose STONE";
+            $this->userChoiceImg = "<img src='img/stone.png' alt='stone'>";
+
         }
     }
 
@@ -112,13 +102,16 @@ class RockPaperScissors
     {
         if ($this->computerChoice == 2){
             $this->computerChoiceDisplay = "Computer chose PAPER";
+            $this->computerChoiceImg = "<img src='img/paper.png' alt='paper'>";
         } else if ($this->computerChoice == 3){
             $this->computerChoiceDisplay =  "Computer chose SCISSORS";
+            $this->computerChoiceImg = "<img src='img/scissors.png' alt='scissors'>";
+
         } else if ($this->computerChoice == 1){
             $this->computerChoiceDisplay =  "Computer chose STONE";
-        }
-            
-        
+            $this->computerChoiceImg = "<img src='img/stone.png' alt='stone'>";
+
+        }   
     }
 
     public function userAddScore()
@@ -132,6 +125,7 @@ class RockPaperScissors
     public function computerAddScore()
     {
         $this->roundResult = "This round, you lose";
+
         $this->computerScore++;
         $_SESSION["computerScore"] = $this->computerScore;
     }
@@ -140,10 +134,7 @@ class RockPaperScissors
     {
         $this->roundResult = "It's a tie.";
     }
-   
 
-     //TODO: want to keep the score display on view.php
-     //show restart btn, and need to press the btn to reset()
     public function reset()
     {
         $this->computerScore = 0;
@@ -151,9 +142,6 @@ class RockPaperScissors
 
         $this->userScore = 0;
         $_SESSION["userScore"] = $this->userScore;
-
     }
-
-
-    
+ 
 }
