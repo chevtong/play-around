@@ -6,101 +6,102 @@
     <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Casino royale - rock, paper, scissors</title>
 
-    <style>
-    img {
-        width: 5rem;
-    }
 
-    button {
-        outline: none;
-        border: none;
-        border-radius: 50%;
-        width: 6rem;
-        height: 6rem;
-    }
-
-    button:focus {
-        background-color: #333;
-    }
-
-	button:disabled {
-        opacity: .5;
-    }
-
-	.table{
-		height: 30vh;
-		background-color: grey;
-	}
-    </style>
 </head>
 
 <body>
 
-<h1>Rock Paper Scissors</h1>
+    <h1>Rock &#8226; Paper &#8226; Scissors</h1>
 
-<div class="table">
+    <div class="container">
 
-<!-- display user weapon -->
-<?php if(!empty($game->userChoiceImg)){
-	echo $game->userChoiceImg;
-} 
-?>
+        
+		<div class="userScore">
+			<!-- display user scores -->
+			<p>Your Score: <br> 
+				<span class="score"> <?php if(!empty($game->userScore)){ 
+									echo $game->userScore; 
+								} else {
+									echo "0";
+								} ?></span></p>
+			
 
-<!-- display computer weapon,  img tag will not appear till userChoice is entered -->
-<?php if(!empty($game->computerChoiceImg) ){
-	echo $game->computerChoiceImg;
-} 
-?>
+			
+			<!-- display userChoice -->
+			<p><?php if(!empty($game->userChoiceDisplay)){ 
+							echo $game->userChoiceDisplay;
+						} ?></p>
+		</div>
 
+		<div class="table">
 
-</div>
+            <!-- display user weapon img -->
+            <?php if(!empty($game->userChoiceImg)){
+						echo $game->userChoiceImg;
+					} else {
+						echo "<img src='img/consider-player.png' alt='waiting'>";
+					}
+			?>
 
-    <form action="index.php" method="post">
-        <button name="userChoice" value="1" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?> >
-			<img src="img/stone.png" alt="rock" ></button>
-        <button name="userChoice" value="2" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?> >
-			<img src="img/paper.png" alt="paper"></button>
-        <button name="userChoice" value="3" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?> >
-			<img src="img/scissors.png" alt="scissors"></button>
+            <!-- display computer weapon img -->
+            <?php if(!empty($game->computerChoiceImg) ){
+						echo $game->computerChoiceImg;
+					} else {
+						echo "<img src='img/consider.png' alt='waiting'>";
+					}
+			?>
 
-        <button name="restart" value="restart"
-            <?php if(empty($game->overAllResult)){echo "disabled";}  ?>>RESTART</button>
-    </form>
+		</div>
 
-    <!-- display the overall result -->
-    <h3><?php if(!empty($game->overAllResult)){ 
-	echo $game->overAllResult; 
-}?></h3>
+		<!-- display computer scores -->
+		<div class="computerScore">
+			<p>Computer Score:<br>  
+				<span class="score"> <?php if(!empty($game->computerScore)){ 
+										echo $game->computerScore;
+									} else { echo "0"; }?></span></p>
+			
+			<!-- display computer Choice -->
+			<p><?php if(!empty($game->computerChoiceDisplay)){ 
+						echo $game->computerChoiceDisplay;
+						} ?></p>
+		</div>
+		
 
+	</div>
+	<div class="result">
 
-    <!-- display userChoice -->
-    <p><?php if(!empty($game->userChoiceDisplay)){ 
-	echo $game->userChoiceDisplay;
-} ?></p>
+		<!-- display the overall result -->
+		<h3><?php if(!empty($game->overAllResult)){ 
+					echo $game->overAllResult; 
+					}?></h3>
 
-    <!-- display computer Choice -->
-    <p><?php if(!empty($game->computerChoiceDisplay)){ 
-	echo $game->computerChoiceDisplay;
-} ?></p>
+		<!-- display result -->
+		<p><?php if(!empty($game->roundResult)){ 
+					echo $game->roundResult;
+					} ?></p>
+	</div>
 
-    <!-- display result -->
-    <p><?php if(!empty($game->roundResult)){ 
-	echo $game->roundResult;
-} ?></p>
+	<div class="weaponList">
+		<form action="index.php" method="post">
+			<button name="userChoice" value="1" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?>>
+				<img src="img/stone.png" alt="rock"></button>
+			<button name="userChoice" value="2" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?>>
+				<img src="img/paper.png" alt="paper"></button>
+			<button name="userChoice" value="3" <?php if(!empty($game->overAllResult)){echo "disabled";}  ?>>
+				<img src="img/scissors.png" alt="scissors"></button>
 
-    <!-- display user scores -->
-    <p>Your Score: <?php if(!empty($game->userScore)){ 
-	echo $game->userScore; 
-} else {
-	echo "0";
-} ?></p>
+			<button name="restart" value="restart"
+				<?php if(empty($game->overAllResult)){echo "disabled";}  ?>>RESTART</button>
+		</form>
+	</div>
 
-    <!-- display computer scores -->
-    <p>Computer Score: <?php if(!empty($game->computerScore)){ 
-	echo $game->computerScore;
-} else { echo "0"; }?></p>
+	
+
+    
+
 
 </body>
 

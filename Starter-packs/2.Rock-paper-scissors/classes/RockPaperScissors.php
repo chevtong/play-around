@@ -87,13 +87,13 @@ class RockPaperScissors
     {
         if ($this->userChoice == 2){
             $this->userChoiceDisplay = "You chose PAPER";
-            $this->userChoiceImg = "<img src='img/paper.png' alt='paper'>";
+            $this->userChoiceImg = "<img src='img/paper-player.png' alt='paper'>";
         } else if ($this->userChoice == 3){
             $this->userChoiceDisplay =  "You chose SCISSORS";
-            $this->userChoiceImg = "<img src='img/scissors.png' alt='scissors'>";
+            $this->userChoiceImg = "<img src='img/scissors-player.png' alt='scissors'>";
         } else if ($this->userChoice == 1) {
             $this->userChoiceDisplay =  "You chose STONE";
-            $this->userChoiceImg = "<img src='img/stone.png' alt='stone'>";
+            $this->userChoiceImg = "<img src='img/rock-player.png' alt='stone'>";
 
         }
     }
@@ -102,14 +102,13 @@ class RockPaperScissors
     {
         if ($this->computerChoice == 2){
             $this->computerChoiceDisplay = "Computer chose PAPER";
-            $this->computerChoiceImg = "<img src='img/paper.png' alt='paper'>";
+            $this->computerChoiceImg = "<img src='img/paper-computer.png' alt='paper'>";
         } else if ($this->computerChoice == 3){
             $this->computerChoiceDisplay =  "Computer chose SCISSORS";
-            $this->computerChoiceImg = "<img src='img/scissors.png' alt='scissors'>";
-
+            $this->computerChoiceImg = "<img src='img/scissors-computer.png' alt='scissors'>";
         } else if ($this->computerChoice == 1){
             $this->computerChoiceDisplay =  "Computer chose STONE";
-            $this->computerChoiceImg = "<img src='img/stone.png' alt='stone'>";
+            $this->computerChoiceImg = "<img src='img/rock-computer.png' alt='stone'>";
 
         }   
     }

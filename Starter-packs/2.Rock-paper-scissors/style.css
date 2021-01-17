@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+*{
+    padding: 0;
+    margin:0;
+}
+body{
+    background-color: #ffe8df;
+    color: #888888;
+}
+img {
+    width: 5rem;
+}
+
+button {
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+}
+
+button:focus {
+    background-color: #ffffff;
+}
+
+button:disabled {
+    opacity: .5;
+}
+h1{
+    font-size: 8rem;
+    text-align: center;
+    text-shadow: 4px 4px #ffffff;
+    font-family: 'Bebas Neue', cursive;
+    letter-spacing: 1px;
+
+}
+p{
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.container{
+    width: 95%;
+
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-gap: 1rem;
+    
+    margin: 2rem auto;
+}
+
+.table{
+   
+    height: 300px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+
+    padding: 4rem 2rem;
+    
+}
+.table img{
+    max-width: 100%;
+    max-height: 100%;
+    width: 10rem;
+
+}
+
+.userScore{
+    justify-self: end;
+    text-align: right;
+    padding: 3rem;
+}
+.computerScore{
+    padding: 3rem;
+
+}
+.score{
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.result, .weaponList{
+  
+}
+
+
