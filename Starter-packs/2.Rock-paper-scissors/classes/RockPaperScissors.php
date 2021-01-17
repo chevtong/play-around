@@ -10,10 +10,9 @@ class RockPaperScissors
     public $userChoiceDisplay;
     public $userScore;
 
-    public $round;
+   // public $round;
     public $roundResult;
-
-    public $overResult;
+    public $overAllResult;
     
     public function __construct()
     {
@@ -29,9 +28,9 @@ class RockPaperScissors
             $this->userScore = $_SESSION["userScore"];
         }
 
-        if(!empty($_SESSION["round"])){
-            $this->round = $_SESSION["round"];
-        }
+        // if(!empty($_SESSION["round"])){
+        //     $this->round = $_SESSION["round"];
+        // }
     }
 
 
@@ -49,8 +48,8 @@ class RockPaperScissors
                 $this->computerChoiceDisplay();
             }
 
-            $this->round++;
-            $_SESSION["round"]=$this->round;
+            // $this->round++;
+            // $_SESSION["round"]=$this->round;
 
             if ($this->computerChoice == $this->userChoice){
                 $this->tie();
@@ -74,16 +73,11 @@ class RockPaperScissors
             
             //compare  == 3 need to reset the game
             //clear computer and user score and roun
-            if ($this->round == 2 && $this->userScore == 2){
-                $this->overResult = "2/2 you win";
-                
-            } else if ($this->round == 3 && $this->userScore == 2){
-                $this->overResult =  "2/3 you win";
-            } else if ($this->round == 2 && $this->computerScore == 2){
-                $this->overResult =  "you lose";
-            } else if ($this->round == 3 && $this->computerScore == 2){
-                $this->overResult =  "you lose";
-            } 
+            if (!empty($this->userScore) && ($this->userScore == 2)){
+                $this->overAllResult = "YOU WIN THE GAME!! ";
+            } else if (!empty($this->computerScore) && ($this->computerScore == 2)){
+                $this->overAllResult = "YOU LOSE THE GAME!! ";
+            }
             
         }
     }
@@ -117,7 +111,7 @@ class RockPaperScissors
 
     public function userAddScore()
     {
-        $this->roundResult = "WIN";
+        $this->roundResult = "This round, you win";
 
         $this->userScore++; 
         $_SESSION["userScore"] = $this->userScore;
@@ -125,7 +119,7 @@ class RockPaperScissors
 
     public function computerAddScore()
     {
-        $this->roundResult = "LOSE";
+        $this->roundResult = "This round, you lose";
         $this->computerScore++;
         $_SESSION["computerScore"] = $this->computerScore;
     }

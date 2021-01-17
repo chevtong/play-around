@@ -51,25 +51,39 @@
 	echo $game->computerChoiceDisplay;
 } ?></p>
 
-<!-- display result -->
-<p><?php if(!empty($game->roundResult)){ 
-	echo $game->roundResult;
-} ?></p>
+	<!-- display overAllResult -->
+	<h3><?php if(!empty($game->overAllResult)){ 
+		echo $game->overAllResult;
+	} ?></h3>
 
-<!-- display user scores --> 
-<p><?php if(!empty($game->userScore)&& !empty($game->userChoice)){ 
-	echo "Your Score: {$game->userScore}";
-} ?></p>
+		<!-- display result -->
+	<p><?php if(!empty($game->roundResult)){ 
+		echo $game->roundResult;
+	} ?></p>
 
-<!-- display computer scores --> 
-<p><?php if(!empty($game->computerScore)&& !empty($game->computerScore)){ 
-	echo "Computer Score: {$game->computerScore}";
-} ?></p>
+	<!-- display user scores --> 
+	<p><?php if(!empty($game->userScore)){ 
+		echo "Your Score: {$game->userScore}";
+	} ?></p>
+
+	<!-- display computer scores --> 
+	<p><?php if(!empty($game->computerScore)){ 
+		echo "Computer Score: {$game->computerScore}";
+	} ?></p>
+
+	
+
+
+
+
+
+
+
 
 <!-- display ROUND --> 
-<p><?php if(!empty($game->round)&& !empty($game->round)){ 
-	echo "ROUND: {$game->round}";
-} ?></p>
+<p><?php //if(!empty($game->round)&& !empty($game->round)){ 
+	//echo "ROUND: {$game->round}";
+//} ?></p>
 
 </body>
 </html>
