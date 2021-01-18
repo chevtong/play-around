@@ -31,6 +31,8 @@ function whatIsHappening() {
 $game = new RockPaperScissors();
 $game->run();
 
+
+
 //Show the $game obj deatils when building
 // echo '<h2>$game</h2>';
 // echo "<pre>";
