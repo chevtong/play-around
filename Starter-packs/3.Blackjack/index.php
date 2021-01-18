@@ -23,24 +23,42 @@ function whatIsHappening() {
     var_dump($_POST);
     echo "</pre>";
    
-    echo '<h2>$_SESSION</h2>';
-    echo "<pre>";
-    var_dump($_SESSION);
-    echo "</pre>";   
+    // echo '<h2>$_SESSION</h2>';
+    // echo "<pre>";
+    // var_dump($_SESSION);
+    // echo "</pre>";   
 }
-//whatIsHappening();
+whatIsHappening();
 
 
-$game = new RockPaperScissors();
-$game->reset();
-
+$game = new Blackjack();
+$game->run();
 
 //Show the $game obj deatils when building
-// echo '<h2>$game</h2>';
-// echo "<pre>";
-// var_dump($game);
-// echo "</pre>";
-// echo "<br>";
+echo '<h2>$game</h2>';
+echo "<pre>";
+var_dump($game);
+echo "</pre>";
+
+if (!empty($_POST["userDecision"]) && ($_POST["userDecision"] == "start")){
+    
+    $computer = new Computer();
+    $computer->run();
+
+
+   echo '<h2>$computer</h2>';
+    echo "<pre>";
+    var_dump($computer);
+    echo "</pre>";
+
+}
+
+//TODO: user click on start - 2 cards give to user
+
+
+
+
+
 
 
 require 'view.php';

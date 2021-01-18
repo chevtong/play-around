@@ -6,6 +6,15 @@
     <title>Casino royale - Blackjack</title>
 </head>
 <body>
-    
+
+
+
+<form action="" method="post">
+<button name="userDecision" value="start">START</button>
+
+<button name="userDecision" value="hold">HOLD</button>
+<button name="userDecision" value="hit">HIT</button>
+
+</form>
 </body>
 </html>
