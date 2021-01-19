@@ -76,6 +76,8 @@ if (!empty($_POST["userDecision"])){
             //update the totalvalue of player
             $player->calculateValueComputer();
 
+           
+
 
             //store info to the sessions
             $_SESSION['computer'] = serialize($computer);
@@ -128,7 +130,7 @@ if (!empty($_POST["userDecision"])){
 
 
 
-session_destroy();
+//session_destroy();
 
 require 'view.php';
 

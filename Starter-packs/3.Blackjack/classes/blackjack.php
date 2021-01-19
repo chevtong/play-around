@@ -53,20 +53,7 @@ class Blackjack
         }
     }
 
-    //check computer/user has blackjack(21) once the game is started
-    public function checkBlackJack()
-    {
-        //get the totalValue from session
-        $this->totalValueUser = $_SESSION["totalValueUser"];
-        $this->totalValueComputer = $_SESSION["totalValueComputer"];
-
-        if ($this->totalValueUser == 21){
-            $this->blackJackAnnounce = "Player BlackJack";
-        } 
-        if ($this->totalValueComputer == 21){
-            $this->blackJackAnnounce = "Computer BlackJack";
-        } 
-    }
+   
 
 
 
@@ -94,6 +81,14 @@ class Computer extends Blackjack
         $_SESSION["totalValueComputer"] = $this->totalValueComputer;
     }
 
+     //check computer has blackjack(21) once the game is started
+     public function checkBlackJack()
+     {
+       
+         if ($this->totalValueComputer == 21){
+             $this->blackJackAnnounce = "Computer BlackJack";
+         } 
+     }
 
 
    
@@ -117,7 +112,14 @@ class User extends Blackjack
         $_SESSION["totalValueUser"] = $this->totalValueUser;
     }
 
-
+    //check computer has blackjack(21) once the game is started
+    public function checkBlackJack()
+    {
+     
+        if ($this->totalValueUser == 21){
+            $this->blackJackAnnounce = "User BlackJack";
+        } 
+    }
 
 }
 
