@@ -16,5 +16,11 @@
 <button name="userDecision" value="hit">HIT</button>
 
 </form>
+
+<!-- display if computer/player get blackjack -->
+<p><?php if(!empty($player->blackJackAnnounce)) {echo $player->blackJackAnnounce;}?></p>
+<p><?php if(!empty($computer->blackJackAnnounce)) {echo $computer->blackJackAnnounce;}?></p>
+
+<p><?php if(!empty($player->result)) {echo $player->result;}?></p>
 </body>
 </html>

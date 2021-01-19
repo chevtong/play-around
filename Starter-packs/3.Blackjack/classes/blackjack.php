@@ -3,6 +3,8 @@
 class Blackjack
 {
      public $cardArray;
+    public $blackJackAnnounce;
+     public $result;
 
     public function __construct()
     {   
@@ -17,27 +19,7 @@ class Blackjack
     {
         //TODO:compare the cards
 
-    }
-
-    public function compareCard()
-    {
-        //get the totalValue from session
-        $this->totalValueUser = $_SESSION["totalValueUser"];
-        $this->totalValueComputer = $_SESSION["totalValueComputer"];
-
-        //comparison
-        if($this->totalValueUser == 21){
-            echo "Black Jack";
-        } else if ($this->totalValueUser > 21){
-            echo "over 21... ";
-        }   else if($this->totalValueUser < $this->totalValueComputer){
-           echo "LOSE! you've got lower than dealer";
-        } else if($this->totalValueUser > $this->totalValueComputer){
-            echo "WIN! you've got higher than dealer";
-        }
-    }
-
-   
+    }  
 
     public function startGame()
     {
@@ -50,6 +32,43 @@ class Blackjack
     {
         array_push($this->cardArray, rand(1, 11));
     }
+
+    public function compareCard()
+    {
+        //get the totalValue from session
+        $this->totalValueUser = $_SESSION["totalValueUser"];
+        $this->totalValueComputer = $_SESSION["totalValueComputer"];
+
+        //comparison
+        if($this->totalValueUser == 21){
+            $this->result = "WIN you have 21!";
+        } else if ($this->totalValueUser > 21){
+            $this->result = "over 21... ";
+        } else if ($this->totalValueComputer > 21){
+            $this->result = "computer over 21, you WIN!";
+        } else if($this->totalValueUser < $this->totalValueComputer){
+           $this->result = "LOSE! you've got lower than dealer";
+        } else if($this->totalValueUser > $this->totalValueComputer){
+            $this->result = "WIN! you've got higher than dealer";
+        }
+    }
+
+    //check computer/user has blackjack(21) once the game is started
+    public function checkBlackJack()
+    {
+        //get the totalValue from session
+        $this->totalValueUser = $_SESSION["totalValueUser"];
+        $this->totalValueComputer = $_SESSION["totalValueComputer"];
+
+        if ($this->totalValueUser == 21){
+            $this->blackJackAnnounce = "Player BlackJack";
+        } 
+        if ($this->totalValueComputer == 21){
+            $this->blackJackAnnounce = "Computer BlackJack";
+        } 
+    }
+
+
 
 }
 
@@ -66,6 +85,11 @@ class Computer extends Blackjack
     public function calculateValueComputer()
     { 
         $this->totalValueComputer = array_sum($this->cardArray);
+
+        if ($this->totalValueComputer == 21){
+            $this->blackJackAnnounce = "Computer BlackJack";
+        }
+
         //store the totalvalue in session everytime, for the compare function
         $_SESSION["totalValueComputer"] = $this->totalValueComputer;
     }
@@ -88,9 +112,12 @@ class User extends Blackjack
     public function calculateValueComputer()
     { 
         $this->totalValueUser = array_sum($this->cardArray);
+     
         //store the totalvalue in session everytime, for the compare function
         $_SESSION["totalValueUser"] = $this->totalValueUser;
     }
+
+
 
 }
 

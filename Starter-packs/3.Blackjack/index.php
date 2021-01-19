@@ -19,9 +19,9 @@ require_once 'classes/blackjack.php';
 
 function whatIsHappening() {
     
-    echo '<h2>$_POST</h2>';
-    //echo "<pre>";
-    var_dump($_POST);
+    // echo '<h2>$_POST</h2>';
+    // //echo "<pre>";
+    // var_dump($_POST);
     //echo "</pre>";
    
     echo '<h2>$_SESSION</h2>';
@@ -50,9 +50,14 @@ if (!empty($_POST["userDecision"])){
             //create new obj for both parties + calculate the totalValue
             $computer = new Computer();
             $computer->calculateValueComputer();
+            $computer->checkBlackJack();
+
+
         
             $player = new User();
             $player->calculateValueComputer();
+            $player->checkBlackJack();
+
 
             //store every info in the session
             $_SESSION['computer'] = serialize($computer);
@@ -71,6 +76,7 @@ if (!empty($_POST["userDecision"])){
             //update the totalvalue of player
             $player->calculateValueComputer();
 
+
             //store info to the sessions
             $_SESSION['computer'] = serialize($computer);
             $_SESSION['player'] = serialize($player);
@@ -85,6 +91,7 @@ if (!empty($_POST["userDecision"])){
             $player = unserialize($_SESSION['player']);
 
             // compare cards
+            //TODO: why is it not $deck->compareCard()??????,
             $player->compareCard();
             //TODO: if computer less than 16, auto generate card 
 
@@ -116,15 +123,12 @@ if (!empty($_POST["userDecision"])){
 }
 
 
-//TODO: click on hit btn - 1 card to player
-
-//TODO: click on hold btn - compare the cards
 
 
 
 
 
-//session_destroy();
+session_destroy();
 
 require 'view.php';
 
