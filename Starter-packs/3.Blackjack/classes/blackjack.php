@@ -2,9 +2,9 @@
 
 class Blackjack
 {
-     public $cardArray;
+    public $cardArray;
     public $blackJackAnnounce;
-     public $result;
+    public $result;
 
     public function __construct()
     {   
@@ -46,6 +46,8 @@ class Blackjack
             $this->result = "BUST... ";
         } else if ($this->totalValueComputer > 21){
             $this->result = "computer over 21, you WIN!";
+        } else if($this->totalValueUser == $this->totalValueComputer){
+            $this->result = "LOSE! same point as dealer";
         } else if($this->totalValueUser < $this->totalValueComputer){
            $this->result = "LOSE! you've got lower than dealer";
         } else if($this->totalValueUser > $this->totalValueComputer){
@@ -65,9 +67,9 @@ class Computer extends Blackjack
     public $decisionComputer;
     
     public function __construct(){
+       
         parent::__construct();
-        
-    
+      
     }
 
     public function calculateValueComputer()
@@ -115,7 +117,26 @@ class Computer extends Blackjack
             //}
 
          }
+
+        
      }
+
+    //If the player stops, 
+    //the dealer gets as many turns as needed to either win or go bust
+    public function computerFinalDecision()
+    {
+        echo "computerFinalDecision function";
+        $this->totalValueComputer = $_SESSION["totalValueComputer"];
+
+        while ($this->totalValueComputer < 21){
+            $this->generateCard();
+            $this->calculateValueComputer();
+
+            if($this->totalValueComputer >= 18){
+                break;
+            }
+        }
+    }
 
 
    
@@ -146,6 +167,8 @@ class User extends Blackjack
         if ($this->totalValueUser == 21){
             $this->blackJackAnnounce = "User BlackJack";
         } 
+
+        //TODO: end game
     }
 
 }

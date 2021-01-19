@@ -54,7 +54,6 @@ class GuessingGame
 
         //if the user enter the correct number in the last attempts, 
         //the above compparasion will still run first before change to a new secret number
-
         $_SESSION["attempts"] = $this->attempts;
 
         if($this->attempts == $this->maxGuesses){

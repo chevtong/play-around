@@ -36,10 +36,10 @@ $deck = new Blackjack();
 $deck->run();
 
 //Show the $game obj deatils when building
-echo '<h2>$deck</h2>';
+//echo '<h2>$deck</h2>';
 //echo "<pre>";
-var_dump($deck);
-echo "</pre>";
+// var_dump($deck);
+// echo "</pre>";
 
 if (!empty($_POST["userDecision"])){
 
@@ -97,7 +97,9 @@ if (!empty($_POST["userDecision"])){
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
 
-            // compare cards
+            //If the player stops, 
+    //the dealer gets as many turns as needed to either win or go bust
+            $computer->computerFinalDecision();
             //TODO: why is it not $deck->compareCard()??????,
             $player->compareCard();
 
