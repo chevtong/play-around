@@ -46,7 +46,7 @@ if (!empty($_POST["userDecision"])){
     switch($_POST["userDecision"]){
 
         case "start":
-            echo "start";
+            //echo "start";
             //create new obj for both parties + calculate the totalValue
             $computer = new Computer();
             $computer->calculateValueComputer();
@@ -66,7 +66,7 @@ if (!empty($_POST["userDecision"])){
             break;
 
         case "hit":
-            echo "hit";
+            //echo "hit";
             //get the session info for both parties
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
@@ -87,7 +87,8 @@ if (!empty($_POST["userDecision"])){
 
 
         case "hold":
-            echo "hold";
+            //echo "hold";
+
             //get the session info for both parties
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
@@ -95,6 +96,7 @@ if (!empty($_POST["userDecision"])){
             // compare cards
             //TODO: why is it not $deck->compareCard()??????,
             $player->compareCard();
+
             //TODO: if computer less than 16, auto generate card 
 
 
