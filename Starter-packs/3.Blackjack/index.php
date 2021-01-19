@@ -32,14 +32,14 @@ function whatIsHappening() {
 whatIsHappening();
 
 
-// $deck = new Blackjack();
-// $deck->run();
+$deck = new Blackjack();
+$deck->run();
 
 //Show the $game obj deatils when building
-// echo '<h2>$deck</h2>';
-// //echo "<pre>";
-// var_dump($deck);
-//echo "</pre>";
+echo '<h2>$deck</h2>';
+//echo "<pre>";
+var_dump($deck);
+echo "</pre>";
 
 if (!empty($_POST["userDecision"])){
 
@@ -83,6 +83,11 @@ if (!empty($_POST["userDecision"])){
             //get the session info for both parties
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
+
+            // compare cards
+            $player->compareCard();
+            //TODO: if computer less than 16, auto generate card 
+
 
             break;
         default: 
