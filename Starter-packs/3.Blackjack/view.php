@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casino royale - Blackjack</title>
+
+    <style>
+    img{
+        width: 6rem;
+    }
+    </style>
 </head>
 <body>
 
@@ -65,6 +71,29 @@
     
 <?php echo $computer->totalValueComputer;}?>
 </p>
+
+<!-- display player cards img -->
+<div>Your cards: <?php if(!empty($player->cardArray)){
+    foreach ($player->cardArray as $card) {
+        echo "<img src='./img/{$card}.jpg' alt='{$card}'>";
+    }}?>
+</div>
+
+<!-- display computer cards img -->
+<div>Dealer cards: <?php 
+    if (!empty($computer->cardArray) && !empty($player->result)){
+        foreach ($computer->cardArray as $card) {
+            echo "<img src='./img/{$card}.jpg' alt='{$card}'>";
+        }
+    } else if(!empty($computer->cardArray)){
+        foreach ($computer->cardArray as $card) {
+            echo "<img src='./img/cardback.jpg' alt='cardback'>";
+        }
+    } 
+    
+    ?>
+</div>
+
 
 </body>
 </html>
