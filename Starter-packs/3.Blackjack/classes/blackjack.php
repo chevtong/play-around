@@ -5,6 +5,7 @@ class Blackjack
     public $cardArray;
     public $blackJackAnnounce;
     public $result;
+    //public $disableBtn;
 
     public function __construct()
     {   
@@ -53,8 +54,10 @@ class Blackjack
         } else if($this->totalValueUser > $this->totalValueComputer){
             $this->result = "WIN! you've got higher than dealer";
         }
+        
     }
 
+  
    
 
 
@@ -135,6 +138,8 @@ class Computer extends Blackjack
             if($this->totalValueComputer >= 18){
                 break;
             }
+
+
         }
     }
 
@@ -169,6 +174,8 @@ class User extends Blackjack
         } 
 
         //TODO: end game
+        
+        
     }
 
 }

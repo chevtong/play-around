@@ -10,10 +10,12 @@
 
 
 <form action="" method="post">
-<button name="userDecision" value="start">START</button>
-
-<button name="userDecision" value="hold">HOLD</button>
-<button name="userDecision" value="hit">HIT</button>
+<button name="userDecision" value="start" <?php if(!empty($_POST["userDecision"]) && empty($player->result)){echo "disabled";}
+?>>START</button>
+<button name="userDecision" value="hold"
+<?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){echo "disabled"; }?>>HOLD</button>
+<button name="userDecision" value="hit"
+<?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){echo "disabled"; }?>>HIT</button>
 
 </form>
 
@@ -32,7 +34,7 @@
 <!-- display player totalValue -->
 <p><?php if(!empty($player->totalValueUser)) { ?>
 
-<span> Your Cards' Total Value: </span>
+    <span> Your Cards' Total Value: </span>
 
 <?php echo $player->totalValueUser; }?></p>
 
@@ -42,7 +44,7 @@
 <!-- display computer cards when result come up -->
 <p><?php if(!empty($player->result)) { ?>
 
-<span> Computer Cards: </span>
+    <span> Computer Cards: </span>
 
 <?php foreach ($computer->cardArray as $card) {echo $card . " ";}
 }?></p>
@@ -52,8 +54,8 @@
 
     <span>Dealer Cards' Total Value: </span>
     
-    <?php echo $computer->totalValueComputer;}
-?></p>
+<?php echo $computer->totalValueComputer;}?>
+</p>
 
 </body>
 </html>

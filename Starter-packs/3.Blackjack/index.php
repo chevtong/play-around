@@ -103,7 +103,8 @@ if (!empty($_POST["userDecision"])){
             //TODO: why is it not $deck->compareCard()??????,
             $player->compareCard();
 
-            //TODO: if computer less than 16, auto generate card 
+           
+
 
 
             break;
@@ -116,7 +117,7 @@ if (!empty($_POST["userDecision"])){
     
 
 
-
+    var_dump($deck);
    echo '<h2>$computer</h2>';
     echo "<pre>";
     var_dump($computer);
