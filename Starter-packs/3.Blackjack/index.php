@@ -76,6 +76,10 @@ if (!empty($_POST["userDecision"])){
             //update the totalvalue of player
             $player->calculateValueComputer();
 
+             //After the players turn, 
+             //the dealer can decide to have one more card if the total amount is lower than the player
+            $computer->considerAddCard();
+
            
 
 

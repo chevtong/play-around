@@ -43,7 +43,7 @@ class Blackjack
         if($this->totalValueUser == 21){
             $this->result = "WIN you have 21!";
         } else if ($this->totalValueUser > 21){
-            $this->result = "over 21... ";
+            $this->result = "BUST... ";
         } else if ($this->totalValueComputer > 21){
             $this->result = "computer over 21, you WIN!";
         } else if($this->totalValueUser < $this->totalValueComputer){
@@ -62,6 +62,7 @@ class Blackjack
 class Computer extends Blackjack
 {
     public $totalValueComputer;
+    public $decisionComputer;
     
     public function __construct(){
         parent::__construct();
@@ -88,6 +89,32 @@ class Computer extends Blackjack
          if ($this->totalValueComputer == 21){
              $this->blackJackAnnounce = "Computer BlackJack";
          } 
+     }
+
+     //After the players turn, 
+     //the dealer can decide to have one more card if the total amount is lower than the player
+     public function considerAddCard()
+     {
+        //get the totalValue from session
+        $this->totalValueUser = $_SESSION["totalValueUser"];
+        $this->totalValueComputer = $_SESSION["totalValueComputer"];
+
+        //first, to meet the condition (totalValueUser > totalValueComputer)
+         if ($this->totalValueUser > $this->totalValueComputer){
+             
+            //second, use a random number to get computer's decision
+            $this->decisionComputer = rand(1,2);
+            echo "computer decision: ". $this->decisionComputer;
+
+            if($this->decisionComputer == 1){
+                //echo "computer get a card";
+                $this->generateCard();   
+                $this-> calculateValueComputer();
+            } //else if ($this->decisionComputer == 2) {
+                //echo "computer wont get card";
+            //}
+
+         }
      }
 
 
