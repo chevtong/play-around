@@ -6,11 +6,8 @@ class Blackjack
     //computer cards + total value (session)
     
 
-    public $randomCard1;
-    public $randomCard2;
-
     public $cardArray;
-    public $totalValue;
+    //public $totalValue;
 
 
     //TODO: construct ($computercard)
@@ -30,7 +27,7 @@ class Blackjack
     public function run()
     {
         //TODO:compare the cards
-        $this->totalValue = array_sum($this->cardArray);
+       // $this->totalValue = array_sum($this->cardArray);
     }
 
     //TODO: getrandomcard function 
@@ -41,10 +38,9 @@ class Blackjack
 
     public function startGame()
     {
-        $this->randomCard1 = rand(1, 11);
-        $this->randomCard2 = rand(1, 11);  
+
         $this->cardArray = [];
-        array_push($this->cardArray, $this->randomCard1, $this->randomCard2);
+        array_push($this->cardArray, rand(1, 11), rand(1, 11));
     }
 
    
@@ -78,6 +74,36 @@ class Computer extends Blackjack
    
 }
 
+class User extends Blackjack
+{
+    public $totalValueUser;
+    
+
+    public function __construct(){
+        parent::__construct();
+        
+    
+    }
+
+    public function run()
+    { 
+        //TODO: cant store the card Array in the session 
+        //$this->cardArray = $_SESSION["cardArray"];
+        if (!empty($this->cardArray)){
+            //$this->cardArray = $_SESSION["cardArray"];
+        }
+
+        if(!empty($this->cardArray)){
+            $this->totalValueUser = array_sum($this->cardArray);
+            $_SESSION["totalValueUser"] = $this->totalValueUser;
+        }
+      
+    }
+
+
+
+   
+}
 
 
 
