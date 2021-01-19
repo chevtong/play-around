@@ -79,7 +79,8 @@
     }}?>
 </div>
 
-<!-- display computer cards img -->
+<!-- display computer cards img, first show the back of the card-->
+<!-- show the value of cards when the $player->result is out -->
 <div>Dealer cards: <?php 
     if (!empty($computer->cardArray) && !empty($player->result)){
         foreach ($computer->cardArray as $card) {
@@ -89,9 +90,7 @@
         foreach ($computer->cardArray as $card) {
             echo "<img src='./img/cardback.jpg' alt='cardback'>";
         }
-    } 
-    
-    ?>
+    }?>
 </div>
 
 

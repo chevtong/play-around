@@ -54,8 +54,7 @@ if (!empty($_POST["userDecision"])){
             $player = new User();
             $player->calculateValueComputer();
             $player->checkBlackJack();
-            //$player->cardDisplay();
-
+            
             //store every info in the session
             $_SESSION['computer'] = serialize($computer);
             $_SESSION['player'] = serialize($player);
