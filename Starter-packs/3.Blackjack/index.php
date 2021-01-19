@@ -47,25 +47,43 @@ if (!empty($_POST["userDecision"])){
 
         case "start":
             echo "start";
+            //create new obj for both parties + calculate the totalValue
             $computer = new Computer();
-            $computer->run();
-            
-            $_SESSION['computer'] = serialize($computer);
+            $computer->calculateValueComputer();
         
             $player = new User();
-            $player->run();
+            $player->calculateValueComputer();
+
+            //store every info in the session
+            $_SESSION['computer'] = serialize($computer);
             $_SESSION['player'] = serialize($player);
 
             break;
+
         case "hit":
             echo "hit";
+            //get the session info for both parties
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
 
+            //give 1 more card to player
+            $player->generateCard();
+            //update the totalvalue of player
+            $player->calculateValueComputer();
+
+            //store info to the sessions
+            $_SESSION['computer'] = serialize($computer);
+            $_SESSION['player'] = serialize($player);
 
             break;
+
+
         case "hold":
             echo "hold";
+            //get the session info for both parties
+            $computer = unserialize($_SESSION['computer']);
+            $player = unserialize($_SESSION['player']);
+
             break;
         default: 
             echo "error";
