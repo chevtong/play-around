@@ -10,12 +10,22 @@
 
 
 <form action="" method="post">
-<button name="userDecision" value="start" <?php if(!empty($_POST["userDecision"]) && empty($player->result)){echo "disabled";}
-?>>START</button>
-<button name="userDecision" value="hold"
-<?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){echo "disabled"; }?>>HOLD</button>
-<button name="userDecision" value="hit"
-<?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){echo "disabled"; }?>>HIT</button>
+
+    <?php if (empty($_POST["userDecision"])){ // display the START button if $post is empty
+        echo "<button name='userDecision' value='start'>START</button>";
+    } else if(!empty($_POST["userDecision"]) && empty($player->result)){ // disable btn when game already started
+        echo "<button name='userDecision' value='start' disabled>START</button>";
+    } else if (!empty($player->result)){ //change btn to RESTART when there is a result 
+        echo "<button name='userDecision' value='start'>RESTART</button>";
+    }?>
+
+    <button name="userDecision" value="hit"
+    <?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){
+        echo "disabled"; } //set disable to HIT if result is out?>>HIT</button>
+
+    <button name="userDecision" value="hold"
+    <?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){
+        echo "disabled"; } //set disable to HOLD if result is out?>>HOLD</button>
 
 </form>
 
