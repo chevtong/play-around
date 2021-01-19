@@ -31,7 +31,6 @@
 
 <!-- display if computer/player get blackjack -->
 <p><?php if(!empty($player->blackJackAnnounce)) {echo $player->blackJackAnnounce;}?></p>
-<p><?php if(!empty($computer->blackJackAnnounce)) {echo $computer->blackJackAnnounce;}?></p>
 
 <!-- display player cards -->
 <p><?php if(!empty($player->cardArray)) { ?>

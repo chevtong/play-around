@@ -14,27 +14,26 @@ error_reporting(E_ALL);
 
 session_start();
 
-require_once 'classes/blackjack.php';
+require_once 'classes/computer.php';
+require_once 'classes/user.php';
 
 
 function whatIsHappening() {
     
     // echo '<h2>$_POST</h2>';
-    // //echo "<pre>";
+    // echo "<pre>";
     // var_dump($_POST);
-    //echo "</pre>";
+    // echo "</pre>";
    
     echo '<h2>$_SESSION</h2>';
     echo "<pre>";
     var_dump($_SESSION);
     echo "</pre>";   
 }
-whatIsHappening();
+//whatIsHappening();
 
 
 $deck = new Blackjack();
-$deck->run();
-
 //Show the $game obj deatils when building
 //echo '<h2>$deck</h2>';
 //echo "<pre>";
@@ -47,17 +46,14 @@ if (!empty($_POST["userDecision"])){
 
         case "start":
             //echo "start";
+
             //create new obj for both parties + calculate the totalValue
             $computer = new Computer();
             $computer->calculateValueComputer();
-            $computer->checkBlackJack();
-
-
         
             $player = new User();
             $player->calculateValueComputer();
             $player->checkBlackJack();
-
 
             //store every info in the session
             $_SESSION['computer'] = serialize($computer);
@@ -67,6 +63,7 @@ if (!empty($_POST["userDecision"])){
 
         case "hit":
             //echo "hit";
+
             //get the session info for both parties
             $computer = unserialize($_SESSION['computer']);
             $player = unserialize($_SESSION['player']);
@@ -80,15 +77,11 @@ if (!empty($_POST["userDecision"])){
              //the dealer can decide to have one more card if the total amount is lower than the player
             $computer->considerAddCard();
 
-           
-
-
             //store info to the sessions
             $_SESSION['computer'] = serialize($computer);
             $_SESSION['player'] = serialize($player);
 
             break;
-
 
         case "hold":
             //echo "hold";
@@ -98,39 +91,25 @@ if (!empty($_POST["userDecision"])){
             $player = unserialize($_SESSION['player']);
 
             //If the player stops, 
-    //the dealer gets as many turns as needed to either win or go bust
+            //the dealer gets as many turns as needed to either win or go bust
             $computer->computerFinalDecision();
-            //TODO: why is it not $deck->compareCard()??????,
             $player->compareCard();
 
-           
-
-
-
             break;
+
         default: 
-            echo "error";
 
-
+            echo "ERROR";
     }
 
-    
-
-
-    var_dump($deck);
-   echo '<h2>$computer</h2>';
-    echo "<pre>";
-    var_dump($computer);
-    echo "</pre>";
-    echo '<h2>$player</h2>';
-    echo "<pre>";
-    var_dump($player);
-    echo "</pre>";
-    
-   
-
-    
-
+    // echo '<h2>$computer</h2>';
+    // echo "<pre>";
+    // var_dump($computer);
+    // echo "</pre>";
+    // echo '<h2>$player</h2>';
+    // echo "<pre>";
+    // var_dump($player);
+    // echo "</pre>";
 }
 
 
