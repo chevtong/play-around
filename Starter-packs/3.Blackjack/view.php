@@ -77,7 +77,7 @@
         <!-- display player totalValue -->
         <p><?php if(!empty($player->totalValueUser)) { ?>
 
-            <span> Your Cards' Total Value: </span>
+            <span>Total Value: </span>
 
         <?php echo $player->totalValueUser; }?></p>
     </div>
@@ -86,7 +86,7 @@
     <div class="computer-card">
         <p><?php if(!empty($player->result)) {?>
 
-            <span>Dealer Cards' Total Value: </span>
+            <span>Dealer's Total Value: </span>
             
         <?php echo $computer->totalValueComputer;}?>
         </p>

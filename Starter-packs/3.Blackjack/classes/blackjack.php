@@ -1,6 +1,6 @@
 <?php 
 
-//TODO: separate class to different files?
+//TODO: instead of giving random card, change them to an array without repeating
 
 class Blackjack
 {

@@ -8,22 +8,18 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-// So, you've reached the final stage huh?
-// Great job! This means you've earned the freedom to build this exercise from scratch.
-// One final word of advice: this game is much more complex, so you might want to use multiple classes in here.
 
 session_start();
 
 require_once 'classes/computer.php';
 require_once 'classes/user.php';
 
-
 function whatIsHappening() {
     
-    // echo '<h2>$_POST</h2>';
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
+    echo '<h2>$_POST</h2>';
+    echo "<pre>";
+    var_dump($_POST);
+    echo "</pre>";
    
     echo '<h2>$_SESSION</h2>';
     echo "<pre>";
@@ -101,18 +97,16 @@ if (!empty($_POST["userDecision"])){
 
             echo "ERROR";
     }
-
-    echo '<h2>$computer</h2>';
-    echo "<pre>";
-    var_dump($computer);
-    echo "</pre>";
-    echo '<h2>$player</h2>';
-    echo "<pre>";
-    var_dump($player);
-    echo "</pre>";
+    //Show the $game obj deatils when building
+    // echo '<h2>$computer</h2>';
+    // echo "<pre>";
+    // var_dump($computer);
+    // echo "</pre>";
+    // echo '<h2>$player</h2>';
+    // echo "<pre>";
+    // var_dump($player);
+    // echo "</pre>";
 }
-
-//session_destroy();
 
 require 'view.php';
 
