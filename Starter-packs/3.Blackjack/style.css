@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #fadcac;
+    color: #158467;
+    font-family: 'Fraunces', serif;
+}
+
+button{
+    border: none;
+    outline: none;
+    background-color: #065446;
+    font-family: 'Fraunces', serif;
+    color: #fadcac;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    box-shadow: 3px 5px #158467;
+    margin: 0 .8rem;
+    
+}
+button:disabled{
+    opacity: .5;
+}
+
+img{
+    width: 6rem;
+    margin: 0.5rem;
+}
+
+h1{
+    font-size: 7rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 3px 3px white;
+    text-transform: uppercase;
+}
+h4{
+    font-size: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px #197163;
+    margin: 1rem;
+}
+p{
+    font-size: 1.5rem;
+}
+
+
+.btn-area {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 2rem;
+}
+
+.card-table{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 2rem;
+    justify-items: center;
+    padding: 3rem;
+    background-color: #065446;
+    height: 400px;
+    width: 95%;
+    margin: auto; 
+    border: 1rem solid #197163;
+    border-radius: 13px;
+}
+
+

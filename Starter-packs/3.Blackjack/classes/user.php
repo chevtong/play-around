@@ -29,16 +29,6 @@ class User extends Blackjack
             $this->blackJackAnnounce = "User BlackJack";
         } 
     }
-    public function cardDisplay()
-    {   
-    //    if ($this->cardArray == 1){
-    //         $this->cardImg = "<img src='./img/' alt=''>";
-    //    }
-            foreach($this->cardArray as $card){
-                return $card;
-                //"<img src='{$card}./img/' alt=''>";
-            }
-    }
 }
 
 
