@@ -11,7 +11,6 @@
 
 <h1>Blackjack</h1>
 
-
 <div class="btn-area">
     <form action="" method="post">
 
@@ -44,7 +43,7 @@
 
 <!-- display if computer/player get blackjack -->
 <?php if(!empty($player->blackJackAnnounce)) {?>
-    <h4> <?php echo $player->blackJackAnnounce;}?></h4>
+<h4> <?php echo $player->blackJackAnnounce;}?></h4>
 
 <div class="card-table">
     <!-- display player cards img -->
@@ -56,19 +55,21 @@
         }}?>
     </div>
 
-    <!--TODO: display computer cards img, first show the back of the card-->
-    <!-- show the value of cards when the $player->result is out -->
+    <!--display dealer cards img-->
     <div>
         <p>Dealer cards:</p> 
         <?php if (!empty($computer->cardArray) && !empty($player->result)){
-            foreach ($computer->cardArray as $card) {
+           //if the result is out, display every cards
+           foreach (($computer->cardArray)  as $card) {
                 echo "<img src='./img/{$card}.jpg' alt='{$card}'>";
             }
-        } else if(!empty($computer->cardArray)){
-            foreach ($computer->cardArray as $card) {
-                echo "<img src='./img/cardback.jpg' alt='cardback'>";
-            }
-           
+        } else if(!empty($computer->cardArray)){ 
+            //if the result is not there, hide the display of first card
+            echo "<img src='./img/cardback.jpg' alt='cardback'>";
+            //use the array_slice to take out the first value of $this->cardArray
+            foreach(array_slice($computer->cardArray,1) as $card){
+                echo "<img src='./img/{$card}.jpg' alt='{$card}'>";
+            }  
         }?>
     </div>
 
