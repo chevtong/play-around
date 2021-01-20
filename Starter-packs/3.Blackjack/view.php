@@ -15,15 +15,16 @@
 <div class="btn-area">
     <form action="" method="post">
 
-    <!-- //TODO: user blackjack -> restart btn not come up , modify display msg -->
-
         <?php if (empty($_POST["userDecision"])){ // display the START button if $post is empty
             echo "<button name='userDecision' value='start'>START</button>";
-        } else if(!empty($_POST["userDecision"]) && empty($player->result)){ // disable btn when game already started
-            echo "<button name='userDecision' value='start' disabled>START</button>";
+        } else if (!empty($player->blackJackAnnounce)){ //change btn to RESTART when player has blackjack 
+            echo "<button name='userDecision' value='start'>RESTART</button>";
         } else if (!empty($player->result)){ //change btn to RESTART when there is a result 
             echo "<button name='userDecision' value='start'>RESTART</button>";
-        }?>
+        } else if(!empty($_POST["userDecision"]) && empty($player->result)){ // disable btn when game already started
+            echo "<button name='userDecision' value='start' disabled>START</button>";
+        } 
+        ?>
 
         <button name="userDecision" value="hit"
         <?php  if(!empty($player->blackJackAnnounce)|| !empty($player->result)){

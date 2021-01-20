@@ -102,14 +102,14 @@ if (!empty($_POST["userDecision"])){
             echo "ERROR";
     }
 
-    // echo '<h2>$computer</h2>';
-    // echo "<pre>";
-    // var_dump($computer);
-    // echo "</pre>";
-    // echo '<h2>$player</h2>';
-    // echo "<pre>";
-    // var_dump($player);
-    // echo "</pre>";
+    echo '<h2>$computer</h2>';
+    echo "<pre>";
+    var_dump($computer);
+    echo "</pre>";
+    echo '<h2>$player</h2>';
+    echo "<pre>";
+    var_dump($player);
+    echo "</pre>";
 }
 
 //session_destroy();

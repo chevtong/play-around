@@ -26,7 +26,7 @@ class User extends Blackjack
     public function checkBlackJack()
     {
         if ($this->totalValueUser == 21){
-            $this->blackJackAnnounce = "User BlackJack";
+            $this->blackJackAnnounce = "Player BlackJack!";
         } 
     }
 }
