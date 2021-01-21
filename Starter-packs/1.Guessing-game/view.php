@@ -16,25 +16,33 @@
     <div class="card my-5 mx-auto mb-3 " style="width: 25rem;">
         <form action="index.php" method="post">
             <div class="card-header">
-                <label for="exampleInputEmail1" class="form-label"><h3>Guess A Number (1-10)</h3> You have 3 attempts to try
-                    it out!<br></label>
+                <label for="exampleInputEmail1" class="form-label">
+                    <h3>Guess A Number (1-10)</h3>
+                    Choose the level<label>            
+                        <button name="maxGuess" value="4" class="btn btn-warning"
+                            <?php if(!empty($game->maxGuess)){echo "disabled";}?>>LOW</button>
+                        <button name="maxGuess" value="3" class="btn btn-warning"
+                            <?php if(!empty($game->maxGuess)){echo "disabled";}?>>MED</button>
+                        <button name="maxGuess" value="2" class="btn btn-warning"
+                            <?php if(!empty($game->maxGuess)){echo "disabled";}?>>HIGH</button>
             </div>
             <div class="card-body">
-                <input type="number" max="10" name="inputNumber" class="form-control" id="exampleInputEmail1"><br>
+                <input type="number" max="10" name="inputNumber" class="form-control" id="exampleInputEmail1" <?php if(empty($game->maxGuess)){
+                            echo " placeholder='Please Choose the level above' disabled";
+                        } else {echo " placeholder='Please enter a number' ";}?>><br>
                 <div class="d-grid gap-2 col-10 mx-auto">
-                    <input type="submit" name="submit" class="btn btn-outline-warning" value="<?php  
-								if(($game->attempts == 0) && !empty($_POST["submit"])){echo "RESTART"; } else {echo "SUBMIT";} 
-									//to change the text of the input inside value attribute from submit to restart?>">
+                    <input type="submit" name="submit" class="btn btn-outline-warning"
+                        <?php if(empty($game->maxGuess)){echo "disabled";}?>>
+
                 </div>
             </div>
         </form>
 
         <div class="card-body">
-			<p>Your Choice: <?php if(isset($_POST["inputNumber"])){echo $_POST["inputNumber"];}?></p>
-			<p> Attempts: <?php if(!empty($game->attempts)){ echo $game->attempts;
-								} else if ((isset($_POST["submit"])) && ($game->attempts == 0)){ 
-									echo $game->allAttemptsUsed();} ?></p>
-            <p>Result: <?php if(!empty($game->result)){ echo $game->result;} ?></p>
+            <p>Your Choice: <?php if(!empty($game->numInput)){echo $game->numInput;} else {echo "-";}?></p>
+            <p>Chances: <?php if(!empty($game->maxGuess)){echo $game->maxGuess;} else {echo "-";}?></p>
+            <p> Attempts: <?php if(!empty($game->guess)){echo $game->guess;} else {echo "-";} ?></p>
+            <p>Result: <?php if(!empty($game->result)){ echo $game->result;} else {echo "-";} ?></p>
         </div>
     </div>
 

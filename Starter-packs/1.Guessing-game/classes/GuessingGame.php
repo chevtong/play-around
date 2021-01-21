@@ -1,104 +1,127 @@
-<?php
+<?php 
 
 
 class GuessingGame
 {
-    public $maxGuesses;
-    public $secretNumber;
+
+    public $secretNum;
+    public $numInput; 
     public $result;
-    public $attempts = 0;
+    public $guess = 0;
+    public $maxGuess;
 
-    // set a default amount of max guesses
-    public function __construct(int $maxGuesses = 3)
+
+
+    public function __construct()
     {
-        // We ask for the max guesses when someone creates a game
-        // Allowing your settings to be chosen like this, will bring a lot of flexibility
-        $this->maxGuesses = $maxGuesses;
+        if(!empty($_SESSION["maxGuess"])){
+
+            $this->maxGuess = $_SESSION["maxGuess"];
+
+        } else if(empty($_SESSION["maxGuess"]) && !empty($_POST["maxGuess"])){
+           
+          $this->maxGuess = $_POST["maxGuess"];
+          $_SESSION["maxGuess"] = $this->maxGuess;
+        }  
+         
+
+        if(!empty($_SESSION["secretNum"])){
+
+            $this->secretNum = $_SESSION["secretNum"];
+
+        } else {
+
+            $this->generateSecretNum();
+        }
+
+        if(!empty($_POST["inputNumber"])){
+           $this->numInput = $_POST["inputNumber"];
+        }
+
+        if(!empty($_SESSION["guess"])){
+            $this->guess = $_SESSION["guess"];
+        }
+
         
-        if(!empty($_SESSION["attempts"])){
-            $this->attempts = $_SESSION["attempts"];
+    }
+
+
+
+    public function generateSecretNum()
+    {
+        $this->secretNum = rand(1, 10);
+        $_SESSION["secretNum"] = $this->secretNum;
+    }
+
+
+    public function compare(){
+
+        if(!empty($this->numInput)){
+
+            $this->guess++;
+            $_SESSION["guess"]=$this->guess;
+
+            if($this->numInput == $this->secretNum){
+                $this->playerWin();       
+            } else if($this->numInput < $this->secretNum){
+                $this->low();
+            } else if($this->numInput > $this->secretNum){
+                $this->high();
+            }
+
+            
+            if ($this->guess == $this->maxGuess){
+                $this->playerLose();
+            }
+
+           
         }
 
-        if(!empty($_SESSION["secretNumber"])){
-            $this->secretNumber = $_SESSION["secretNumber"];
-        } 
+
+
+
+
+        
     }
 
-    public function run()
+    
+    public function playerWin()
     {
-        // This function functions as your game "engine"
-        // It will run every time, check what needs to happen and run the according functions (or even create other classes)
-
-        if (empty($this->secretNumber)){
-            $this->generateSecretNumber(); 
-        }
-
-        if (!empty($_POST["inputNumber"]) ){
-            //the attempts will be +1 everytime user submit a number
-            $this->attempts++;  
-
-            if($_POST["inputNumber"] == $this->secretNumber){
-
-                $this->playerWins();
-
-            } else if ($_POST["inputNumber"] < $this->secretNumber) {
-
-                $this->higher();
-
-            } else if ($_POST["inputNumber"] > $this->secretNumber) {
-
-                $this->lower();
-            } 
-
-        }
-
-        //if the user enter the correct number in the last attempts, 
-        //the above compparasion will still run first before change to a new secret number
-        $_SESSION["attempts"] = $this->attempts;
-
-        if($this->attempts == $this->maxGuesses){
-
-            $this->playerLoses();   
-        } 
+        $this->result = "WIN";
+       
+        $this->restart();
     }
 
-    public function generateSecretNumber()
+    public function playerLose()
     {
-        $this->secretNumber = rand(1,10);
-        $_SESSION["secretNumber"] = $this->secretNumber;
-    }
-    public function higher()
-    {
-        $this->result = "The number is higher than you thought";
-    }
-    public function lower()
-    {
-        $this->result = "The number is lower than you expected";
+        $this->result = "LOSE, start again by choosing the level";
+        $this->restart();
+
     }
 
-    public function playerWins()
+    public function high()
     {
-        $this->result = "<h4>WIN!!</h4> The secret number is {$this->secretNumber}";
-        $this->reset();
+        $this->result = "too high";
     }
 
-    public function playerLoses()
+    public function low()
     {
-        $this->result = "<h4>LOSE... </h4>The secret number is {$this->secretNumber} ";
-        $this->reset();
+        $this->result = "too low";
     }
-
-    public function allAttemptsUsed()
+   
+    //TODO: need to reset the maxGuesses session
+    public function restart()
     {
-    return "All attempts are used, play again?";
-    }
-  
-    public function reset()
-    {   
-        $this->attempts = 0;
-        $_SESSION["attempts"] = 0;   
+        $this->guess = 0;
 
-        $this->generateSecretNumber();
+        $_SESSION["guess"]=$this->guess;
+
+        $this->maxGuess = "";
+        $_SESSION["maxGuess"] = $this->maxGuess;
+
+        $this->generateSecretNum();
     }
 }
 
+
+?>

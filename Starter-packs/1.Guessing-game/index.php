@@ -30,7 +30,7 @@ function whatIsHappening() {
 
 // Start the game
 $game = new GuessingGame();
-$game->run(); 
+$game->compare(); 
 
 //Show the $game obj deatils when building
 // echo '<h2>$game</h2>';
