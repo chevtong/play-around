@@ -28,8 +28,8 @@ Pick up weapon of your choice to fight against the computer. The one who pick up
 <br><br>
 ### Blackjack
 Get cards from 1-11 to get a Blackjack and beat the Dealer!
--Creating 3 classes with extends (the Deck, Computer and User) in separate files.
--Uploading object information to the session on every button submissions and grab the same record to create the object.
+- Creating 3 classes with extends (the Deck, Computer and User) in separate files.
+- Uploading object information to the session on every button submissions and grab the same record to create the object.
 
 
 
